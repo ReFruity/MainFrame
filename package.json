@@ -1,0 +1,16 @@
+{
+  "name": "aionics.ru",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "pm2": "~0.14.3",
+    "express": "~4.13.0",
+    "jade": "~1.11.0"
+  }
+}
