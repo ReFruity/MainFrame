@@ -6,12 +6,16 @@ app.set('view engine', 'jade');
 
 app.use(express.static(__dirname + '/public'));
 
+if (app.get('env') === 'development') {
+    app.locals.pretty = true;
+}
+
 app.get('/', function(req, res) {
     res.render('home');
 });
 
 app.get('/donate', function(req, res) {
-    res.render('donate.html');
+    res.render('donate');
 });
 
 app.get('/contact', function(req, res) {

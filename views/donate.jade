@@ -1,34 +1,60 @@
-doctype html
-html(lang='en')
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        title Donate to support us
-        // Bootstrap Core CSS
-        link(href='css/bootstrap.min.css', rel='stylesheet')
-    body
-        // Navigation
-        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
-            div.container
-                // Brand and toggle get grouped for better mobile display
-                div.navbar-header
-                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                        span.sr-only Toggle navigation
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.navbar-brand(href='#') Start Bootstrap
-                // Collect the nav links, forms, and other content for toggling
-                #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                    ul.nav.navbar-nav
-                        li
-                            a(href='donate') Donate
-                        li
-                            a(href='contact') Contact
-        div.container
-            
-        // jQuery Version 1.11.1
-        script(src='js/jquery.js')
-        // Bootstrap Core JavaScript
-        script(src='js/bootstrap.min.js')
+extends layout.jade
+
+mixin ok
+    img(src='images/ok.png')
+mixin no
+    img(src='images/cross.png')
+
+block append head
+    title Donate to support us
+    link(href='css/donate.css', rel='stylesheet')
+
+block content
+    -
+        yes = '<img src="images/ok.png" />';
+        no = '<img src="images/cross.png" />';
+        list = [['', 'Premium', 'VIP', 'Moderator', 'Administrator'],
+                ['Набор "Премиум"<br><code>/kit premium</code>', yes, no, no, no],
+                ['Набор "VIP"<br><code>/kit vip</code>', no, yes, yes, yes],
+                ['Сохранение опыта после смерти', yes, yes, yes, yes],
+                ['Возвращение на прошлую позицию после телепортации<br><code>/back</code>', yes, yes, yes, yes],
+                ['Возвращение на прошлую позицию после смерти<br><code>/back</code>', no, yes, yes, yes],
+                ['Режим полета<br><code>/fly</code>', no, no, yes, yes],
+                ['Режим Бога<br><code>/god</code>', no, no, yes, yes],
+                ['Смена погоды<br><code>/weather</code>', no, no, yes, yes],
+                ['Выгнать игрока<br><code>/kick</code>', no, no, yes, yes],
+                ['Временный бан<br><code>/tempban</code>', no, no, yes, yes],
+                ['Перманентный бан<br><code>/ban</code>', no, no, no, yes],
+                ['Разбан<br><code>/unban</code>', no, no, no, yes],
+                ['Возможность установить опыт игроку<br><code>/xp set</code>', no, no, no, yes],
+                ['Возможность заглядывать в инвентарь к игроку<br><code>/invsee</code>', no, no, no, yes],
+                ['Возможность заглядывать в эндер-сундук к игроку<br><code>/enderchest</code>', no, no, no, yes],
+                ['Очистка инвентаря у игрока<br><code>/clear</code>', no, no, no, yes],
+                ['Поджечь игрока<br><code>/burn</code>', no, no, no, yes],
+                ['Цена (месяц / навсегда):', '20р / 50р', '50р / 100р', '150р / 300р', '350р / 500р']];
+
+    div.row.text-center
+        table.table.table-striped.table-bordered.donate-info
+            - for (var i = 0; i < list.length; i++)
+                tr
+                    td.col-md-1!= list[i][0]
+                    - for (var j = 1; j < list[i].length; j++)
+                        td.col-md-1!= list[i][j] 
+
+    div.row.text-center
+        table.table.table-bordered
+            tr.active
+                td
+                    | Реквизиты:
+                    br
+                    | QIWI: +79506441644
+                    br
+                    | Web.Money: R242385306732
+                    br
+                    | Yandex: 410013263977835
+                td. 
+                    Обязательно указывайте свой никнейм в примечании к платежу. 
+                    Свяжитесь с нами после оплаты и мы поместим вас в нужную вам группу.
+                    Для этого можно просто зайти на сервер и написать в чат.
+                                                                                 
+    

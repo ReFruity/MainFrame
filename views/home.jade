@@ -1,45 +1,17 @@
-doctype html
-html(lang='en')
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name='description', content='Survival Minecraft Server with Friendly Administration')
-        title Welcome to aionics.ru!
-        // Bootstrap Core CSS
-        link(href='css/bootstrap.min.css', rel='stylesheet')
-        // Custom CSS
-        link(href='css/home.css', rel='stylesheet')
-    body
-        // Navigation
-        nav.navbar.navbar-inverse.navbar-static-top(role='navigation')
-            div.container
-                // Brand and toggle get grouped for better mobile display
-                div.navbar-header
-                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                        span.sr-only Toggle navigation
-                        span.icon-bar
-                        span.icon-bar
-                        span.icon-bar
-                    a.navbar-brand(href='/') Home
-                // Collect the nav links, forms, and other content for toggling
-                div#bs-example-navbar-collapse-1.collapse.navbar-collapse
-                    ul.nav.navbar-nav
-                        li
-                            a(href='donate.html') Donate
-                        //li
-                        //    a(href='contact') Contact
-        div.container.pu
-            div.row
-                div.col-lg-6.info
-                    h1 Welcome to our site!
-                    p We are currently developing a nice survival Minecraft server. Please, stay tuned!
-                div.col-lg-6.text-center
-                    div
-                        iframe#gametracker(src="http://cache.www.gametracker.com/components/html0/?host=212.119.243.127:25565&bgColor=333333&fontColor=CCCCCC&titleBgColor=222222&titleColor=FF9900&borderColor=555555&linkColor=FFCC00&borderLinkColor=222222&showMap=0&currentPlayersHeight=180&showCurrPlayers=1&showTopPlayers=0&showBlogs=0&width=300")
-                    div.btn-block
-                        a.btn.btn-default(href='http://aionics.ru:8123/?worldname=world&mapname=surface', target='_blank', role='button') Dynamic map of the server!
-        // jQuery Version 1.11.1
-        script(src='js/jquery.js')
-        // Bootstrap Core JavaScript
-        script(src='js/bootstrap.min.js')
+extends layout.jade
+
+block append head
+    meta(name='description', content='Survival Minecraft Server with Friendly Administration')
+    title Welcome to aionics.ru!
+    link(href='css/home.css', rel='stylesheet')
+
+block content
+    div.row
+        div.col-lg-6.info
+            h1 Welcome to our site!
+            p We are currently developing a nice survival Minecraft server. Please, stay tuned!
+        div.col-lg-6.text-center
+            div
+                iframe#gametracker(src="http://cache.www.gametracker.com/components/html0/?host=212.119.243.127:25565&bgColor=333333&fontColor=CCCCCC&titleBgColor=222222&titleColor=FF9900&borderColor=555555&linkColor=FFCC00&borderLinkColor=222222&showMap=0&currentPlayersHeight=180&showCurrPlayers=1&showTopPlayers=0&showBlogs=0&width=300")
+            div.btn-block
+                a.btn.btn-success(href='http://aionics.ru:8123/?worldname=world&mapname=surface', target='_blank', role='button') Dynamic map of the server!
