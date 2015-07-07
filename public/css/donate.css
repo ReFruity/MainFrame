@@ -5,3 +5,7 @@
 .row {
     overflow: auto;
 }
+
+.payment-table tbody tr td {
+    /*max-width: 300px;*/
+}

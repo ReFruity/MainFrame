@@ -6,8 +6,13 @@
     width: 304px;
     height: 372px;
 }
+
 .info {
     text-align: center;
+}
+
+.eng-info, .ru-info {
+    border-radius: 10px;
 }
 
 .vk-widget {
