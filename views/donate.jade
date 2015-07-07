@@ -13,28 +13,30 @@ block content
     -
         yes = '<img src="images/ok.png" />';
         no = '<img src="images/cross.png" />';
-        list = [['', 'Premium', 'VIP', 'Moderator', 'Administrator'],
-                ['Набор "Премиум"<br><code>/kit premium</code>', yes, no, no, no],
-                ['Набор "VIP"<br><code>/kit vip</code>', no, yes, yes, yes],
-                ['Сохранение опыта после смерти', yes, yes, yes, yes],
-                ['Возвращение на прошлую позицию после телепортации<br><code>/back</code>', yes, yes, yes, yes],
-                ['Возвращение на прошлую позицию после смерти<br><code>/back</code>', no, yes, yes, yes],
-                ['Режим полета<br><code>/fly</code>', no, no, yes, yes],
-                ['Режим Бога<br><code>/god</code>', no, no, yes, yes],
-                ['Смена погоды<br><code>/weather</code>', no, no, yes, yes],
-                ['Выгнать игрока<br><code>/kick</code>', no, no, yes, yes],
-                ['Временный бан<br><code>/tempban</code>', no, no, yes, yes],
-                ['Перманентный бан<br><code>/ban</code>', no, no, no, yes],
-                ['Разбан<br><code>/unban</code>', no, no, no, yes],
-                ['Возможность установить опыт игроку<br><code>/xp set</code>', no, no, no, yes],
-                ['Возможность заглядывать в инвентарь к игроку<br><code>/invsee</code>', no, no, no, yes],
-                ['Возможность заглядывать в эндер-сундук к игроку<br><code>/enderchest</code>', no, no, no, yes],
-                ['Очистка инвентаря у игрока<br><code>/clear</code>', no, no, no, yes],
-                ['Поджечь игрока<br><code>/burn</code>', no, no, no, yes],
-                ['Цена (месяц / навсегда):', '20р / 50р', '50р / 100р', '150р / 300р', '350р / 500р']];
+        list = [
+            ['', 'Premium', 'VIP', 'Moderator', 'Administrator'],
+            ['Набор "Премиум"<br><code>/kit premium</code>', yes, no, no, no],
+            ['Набор "VIP"<br><code>/kit vip</code>', no, yes, yes, yes],
+            ['Сохранение опыта после смерти', yes, yes, yes, yes],
+            ['Возвращение на прошлую позицию после телепортации<br><code>/back</code>', yes, yes, yes, yes],
+            ['Возвращение на прошлую позицию после смерти<br><code>/back</code>', no, yes, yes, yes],
+            ['Режим полета<br><code>/fly</code>', no, no, yes, yes],
+            ['Режим Бога<br><code>/god</code>', no, no, yes, yes],
+            ['Смена погоды<br><code>/weather</code>', no, no, yes, yes],
+            ['Выгнать игрока<br><code>/kick</code>', no, no, yes, yes],
+            ['Временный бан<br><code>/tempban</code>', no, no, yes, yes],
+            ['Перманентный бан<br><code>/ban</code>', no, no, no, yes],
+            ['Разбан<br><code>/unban</code>', no, no, no, yes],
+            ['Возможность установить опыт игроку<br><code>/xp set</code>', no, no, no, yes],
+            ['Возможность заглядывать в инвентарь к игроку<br><code>/invsee</code>', no, no, no, yes],
+            ['Возможность заглядывать в эндер-сундук к игроку<br><code>/enderchest</code>', no, no, no, yes],
+            ['Очистка инвентаря у игрока<br><code>/clear</code>', no, no, no, yes],
+            ['Поджечь игрока<br><code>/burn</code>', no, no, no, yes],
+            ['Цена (месяц / навсегда):', '20р / 50р', '50р / 100р', '150р / 300р', '350р / 500р']
+        ];
 
     div.row.text-center
-        table.table.table-striped.table-bordered.donate-info
+        table.table.table-striped.table-bordered
             - for (var i = 0; i < list.length; i++)
                 tr
                     td.col-md-1!= list[i][0]

@@ -10,8 +10,24 @@
     text-align: center;
 }
 
-@media(min-width:1200px) {
+.vk-widget {
+    margin-top: 10px;
+    width: auto !important;
+}
+
+@media(min-width:992px) {
     .info {
         text-align: right;
     }
+
+    .vk-widget {
+        margin-top: 0;
+    }
 }
+
+/*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/
+/*Here are the selectors used in BS3, if you want to stay consistent:*/
+/*@media(max-width:767px){}*/
+/*@media(min-width:768px){}*/
+/*@media(min-width:992px){}*/
+/*@media(min-width:1200px){}*/
