@@ -1,0 +1,11 @@
+.contacts {
+    font-size: 30px;
+}
+
+.email-pic {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 90%;
+}

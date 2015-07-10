@@ -2,7 +2,21 @@ extends layout.jade
     
 block append head
     title Contact us
+    link(href='css/contact.css', rel='stylesheet')
         
 block content
-    div.row.text-center
-        h1 Contact us
+    div.panel.panel-default.text-center.contacts
+        div.panel-heading
+            h2 Как с нами связаться
+        div.panel-body
+            div.row
+                div
+                    span.label.label-default Aionics
+                div.email-pic
+                    img(src='/images/aionics.png')
+            hr
+            div.row
+                div
+                    span.label.label-default ReFruity
+                div.email-pic
+                    img(src='images/realne.png')
