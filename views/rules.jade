@@ -1,21 +1,57 @@
 extends layout.jade
 
 block append head
-    title Donate to support us
+    title Rules of the server
     link(href='css/tables.css', rel='stylesheet')
-    link(href='css/donate.css', rel='stylesheet')
+    link(href='css/rules.css', rel='stylesheet')
 
 block content
+    div.row
+        table.table
+            thead
+                tr
+                    th.col-xs-1 #
+                    th.col-xs-8 Игровой процесс
+                    th.col-xs-3 Мера наказания
+            tbody 
+                tr
+                    td 1.1
+                    td Запрещено использование читов, модов, прозрачных текстурпаков и прочих программных средств, дающих игровое преимущество над другими игроками и не предусмотренными игрой.
+                    td Бан навсегда.
+                tr
+                    td 1.2
+                    td Запрещена эксплуатация багов (ошибок или недоработок в сервере, сайте или игровом клиенте). Нашедшему баг стоит оповестить об этом Администрацию. Утаение или корыстное использование бага запрещено. Сотрудничество поощряется.
+                    td Любая мера наказания по усмотрению администрации.
+                tr
+                    td 1.3
+                    td Гриферство* во всех его возможных проявлениях.
+                    td Любая мера наказания по усмотрению администрации.
+            thead
+                tr
+                    th
+                    th Постройки
+                    th 
+            tbody
+                tr
+                    td 2.1
+                    td Для обеспечения безопасности вашего строения и сундуков в нем вы должны заприватить* свой дом и/или прилегающую к нему территорию.
+                    td 
+                tr
+                    td 2.2
+                    td Если Ваше незаприваченное сооружение приватит другой игрок, то постройка переходит в его владение со всем имуществом внутри.
+                    td
+
+//
     -
         yes = '<img src="images/ok.png" />';
         no = '<img src="images/cross.png" />';
         list = [
             ['', 'Premium', 'VIP', 'Moderator', 'Administrator'],
             ['Набор "Премиум"<br><code>/kit premium</code>', yes, no, no, no],
-            ['Набор "VIP"<br><code>/kit vip</code>', no, yes, yes, yes],
-            ['Сохранение опыта после смерти', yes, yes, yes, yes],
+            ['Набор "VIP"<br><code>/kit vip</code>',                                    no,  yes, yes, yes],
+            ['Сохранение опыта после смерти',                                           yes, yes, yes, yes],
             ['Возвращение на прошлую позицию после телепортации<br><code>/back</code>', yes, yes, yes, yes],
-            ['Возвращение на прошлую позицию после смерти<br><code>/back</code>', no, yes, yes, yes],
+            ['Возвращение на прошлую позицию после смерти<br><code>/back</code>',       no,  yes, yes, yes],
             ['Режим полета<br><code>/fly</code>', no, no, yes, yes],
             ['Режим Бога<br><code>/god</code>', no, no, yes, yes],
             ['Смена погоды<br><code>/weather</code>', no, no, yes, yes],
