@@ -24,7 +24,8 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('/rules', function(req, res) {
-    res.render('rules');
+    var json = JSON.parse(fs.readFileSync('public/json/rules.json'));
+    res.render('rules', {rules: json});
 });
 
 app.get('/plugins', function(req, res) {
