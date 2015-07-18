@@ -1,55 +1,33 @@
 extends layout.jade
+
 block append head
     title Plugins
     link(href='css/tables.css', rel='stylesheet')
     link(href='css/plugins.css', rel='stylesheet')
+    
 block content
     div.row.text-center
-        h2 Описание плагинов
-    
+        h2 Описание плагинов    
+        
     div.row
         table.table
             thead
                 tr
                     th.col-xs-1 Плагин
-                    th.col-xs-5 Описание
-                    th.col-xs-6 Команды
+                    th.col-xs-4 Описание
+                    th.col-xs-7 Команды
             tbody
-                tr
-                    td
-                        span.label.label-default.label-header AuthMe
-                    td Позволяет вам регистрировать личный пароль, чтобы никто, кроме вас, не смог играть за вашего персонажа.
-                    td
-                        ul
-                            li
-                                span Регистрация: 
-                                code /reg <ваш пароль> <повторите пароль>
-                            li
-                                span Логин: 
-                                code /l <ваш пароль>
-                tr
-                    td
-                        span.label.label-default.label-header WorldEdit
-                    td Позволяет вам выбирать регион карты.
-                    td
-                        ul
-                            li
-                                span Даёт вам удобный инструмент: 
-                                code //wand
-                            li
-                                span Выбирает текущую позицию за край региона: 
-                                code //pos1
-                                span  
-                                code //pos2
-                tr
-                    td
-                        span.label.label-default.label-header WorldGuard
-                    td 
-                        | Позволяет вам приватить выделенный вами с помощью WorldEdit регион карты. 
-                        | На приватном регионе строить и использовать сундуки можете только вы.
-                    td 
-                        ul
-                            li
-                                span Приват: 
-                                code /rg claim <имя региона>
-    
+                - for (var i = 0; i < plugins.length; i++)
+                    tr
+                        td
+                            span.label.label-default.label-header!= plugins[i].name
+                        td!= plugins[i].description
+                        td
+                            ul
+                                - for (var j = 0; j < plugins[i].commands.length; j++)
+                                    li
+                                        - for (var k = 0; k < plugins[i].commands[j].text.length; k++)
+                                            code!= plugins[i].commands[j].text[k]
+                                            span  
+                                        span  - 
+                                        span!= plugins[i].commands[j].description

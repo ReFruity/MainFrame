@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var app = express();
 
 app.set('port', (process.env.PORT || 8080));
@@ -27,7 +28,8 @@ app.get('/rules', function(req, res) {
 });
 
 app.get('/plugins', function(req, res) {
-    res.render('plugins');
+    var json = JSON.parse(fs.readFileSync('public/json/plugins.json'));
+    res.render('plugins', {plugins: json});
 });
 
 app.listen(app.get('port'), function() {
