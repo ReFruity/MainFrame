@@ -14,6 +14,7 @@ block content
         // empty = '<span class="glyphicon glyphicon-minus"></span>';
         rulesWithPenaltyAmount = rules.withPenalty.length
         rulesWithoutPenaltyAmount = rules.withoutPenalty.length
+        notesAmount = rules.notes.length
     
     div.row.text-center
         h2 Правила сервера
@@ -36,7 +37,7 @@ block content
                                 td= rules.withPenalty[i].entries[j].penalty
                             - else
                                 td
-                                    empty
+                                    +empty
         
         - for (var i = 0; i < rulesWithoutPenaltyAmount; i++)
             table.table.table-hover
@@ -49,3 +50,25 @@ block content
                         tr
                             td= (rulesWithPenaltyAmount+i+1) + '.' + (j+1)
                             td= rules.withoutPenalty[i].entries[j]
+
+        // TODO: remove if not necessary
+        // Second variant of styling the notes
+        //div.panel.panel-default
+        //    table.table.table-hover
+        //        thead
+        //            tr
+        //                th.col-xs-1 #
+        //                th.col-xs-11 Примечания
+        //        tbody
+        //            - for (var i = 0; i < notesAmount; i++)
+        //                tr
+        //                    td= (rulesWithPenaltyAmount+rulesWithoutPenaltyAmount+1) + '.' + (i+1)
+        //                    td!= rules.notes[i] 
+        
+        div.panel.panel-default
+            div.panel-heading
+                span.glyphicon.glyphicon-asterisk
+                strong  Примечания
+            ul.list-group
+                - for (var i = 0; i < notesAmount; i++)
+                    li.list-group-item!= rules.notes[i]
