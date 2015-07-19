@@ -5,6 +5,9 @@ block append head
     link(href='css/tables.css', rel='stylesheet')
     link(href='css/rules.css', rel='stylesheet')
 
+mixin empty
+    span.glyphicon.glyphicon-minus
+    
 block content
     -
         penaltyTitle = 'Мера наказания'
@@ -33,9 +36,9 @@ block content
                                 td= rules.withPenalty[i].entries[j].penalty
                             - else
                                 td
-                                    span.glyphicon.glyphicon-minus
+                                    empty
         
-        - for (var i = 0; i< rulesWithoutPenaltyAmount; i++)
+        - for (var i = 0; i < rulesWithoutPenaltyAmount; i++)
             table.table.table-hover
                 thead
                     tr
