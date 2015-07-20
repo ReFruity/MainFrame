@@ -2,6 +2,9 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 
+var rules = JSON.parse(fs.readFileSync('public/json/rules.json'));
+var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
+
 app.set('port', (process.env.PORT || 8080));
 app.set('view engine', 'jade');
 
@@ -24,13 +27,11 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('/rules', function(req, res) {
-    var json = JSON.parse(fs.readFileSync('public/json/rules.json'));
-    res.render('rules', {rules: json});
+    res.render('rules', {rules: rules});
 });
 
 app.get('/plugins', function(req, res) {
-    var json = JSON.parse(fs.readFileSync('public/json/plugins.json'));
-    res.render('plugins', {plugins: json});
+    res.render('plugins', {plugins: plugins});
 });
 
 app.listen(app.get('port'), function() {
