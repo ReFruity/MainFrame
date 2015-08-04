@@ -6,16 +6,25 @@ block append head
     link(href='css/home.css', rel='stylesheet')
 
 block content
-    div.row
-        div.col-md-4.info
-            div.row.eng-info
-                h1 Welcome to our site!
-                p We are currently developing a nice survival Minecraft server. Please, stay tuned!
-            hr
-            div.row.ru-info
-                h1 Добро пожаловать на наш сайт!
-                p В данное время мы разрабатывает ламповый сурвайвал сервер Майнкрафта. Следите за новостями!
+    div.text-center.panel.panel-default
+        div.panel-body.greetings
+            h1 Добро пожаловать на наш сайт!
+            p Скоро будет старт сервера. Следите за новостями!
 
+    div.row
+        div.col-md-4.text-center
+            div.panel.panel-default.news
+                div.panel-heading
+                    span.glyphicon.glyphicon-bullhorn
+                    strong  Новости
+                div.panel-body.news-content
+                    - for (var i = 0; i < news.length; i++)
+                        div(class="news-entry-" + i)
+                            h3!= news[i].heading
+                            p!= news[i].content
+                            span.label.label-default.news-date= news[i].date
+                        hr
+                
         div.col-md-4.text-center
             div
                 iframe#gametracker(src="http://cache.www.gametracker.com/components/html0/?host=212.119.243.127:25565&bgColor=333333&fontColor=CCCCCC&titleBgColor=222222&titleColor=FF9900&borderColor=555555&linkColor=FFCC00&borderLinkColor=222222&showMap=0&currentPlayersHeight=180&showCurrPlayers=1&showTopPlayers=0&showBlogs=0&width=300")
@@ -28,6 +37,10 @@ block content
                 script(type='text/javascript', src='//vk.com/js/api/openapi.js?116')
                 script(type='text/javascript').
                     VK.Widgets.Group("vk_groups", {mode: 2, width: "298", height: "400"}, 9190731);
+                    
+    div.row.text-center
+        a(href='http://www.want2vote.com/project/id174/', target='_blank')
+            img(src='http://www.want2vote.com/_status/pictures/status_votebanner/174.jpg')
 
 block append js
     script(type='text/javascript', src='js/home.js')

@@ -7,10 +7,6 @@
     height: 372px;
 }
 
-.info {
-    text-align: center;
-}
-
 .vk-widget {
     margin-top: 10px;
     width: auto !important;
@@ -18,12 +14,32 @@
 
 @media(min-width:992px) {
     .info {
-        text-align: right;
+        /*text-align: right;*/
     }
 
     .vk-widget {
         margin-top: 0;
     }
+}
+
+.news {
+    height: 410px;
+    overflow-y: scroll;
+}
+
+.news-content, .greetings {
+    padding-top: 0;
+}
+
+.news-date {
+    /*height: 20px;*/
+    float: right;
+}
+
+.news-entry-heading {
+    /*vertical-align: middle;*/
+    /*display: flex;*/
+    /*display: inline-flex;*/
 }
 
 /*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/

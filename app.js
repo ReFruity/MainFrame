@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 
+var news = JSON.parse(fs.readFileSync('public/json/news.json'));
 var rules = JSON.parse(fs.readFileSync('public/json/rules.json'));
 var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
 
@@ -15,7 +16,7 @@ if (app.get('env') === 'development') {
 }
 
 app.get('/', function(req, res) {
-    res.render('home');
+    res.render('home', {news: news});
 });
 
 app.get('/donate', function(req, res) {
