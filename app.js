@@ -6,6 +6,21 @@ var news = JSON.parse(fs.readFileSync('public/json/news.json'));
 var rules = JSON.parse(fs.readFileSync('public/json/rules.json'));
 var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
 
+fs.watch('public/json/news.json', 
+    function (event, filename) {
+        if (event == "change") {
+            fs.readFile('public/json/news.json', 'utf-8', 
+                function(err, data) {
+                    if (err) {
+                        throw err;
+                    }
+                    news = JSON.parse(data);
+                }
+            );
+        }
+    }
+);
+
 app.set('port', (process.env.PORT || 8080));
 app.set('view engine', 'jade');
 
