@@ -39,8 +39,9 @@ block content
                     VK.Widgets.Group("vk_groups", {mode: 2, width: "298", height: "400"}, 9190731);
                     
     div.row.text-center
-        a(href='http://www.want2vote.com/project/id174/', target='_blank')
-            img(src='http://www.want2vote.com/_status/pictures/status_votebanner/174.jpg')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js')
+        script(type='text/javascript', src='http://want2vote.com/js/get_picture/vote_banner.js' charset='utf-8')
+        #w2v_vote_banner(rel='174')
 
 block append js
     script(type='text/javascript', src='js/home.js')
