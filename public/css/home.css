@@ -13,10 +13,6 @@
 }
 
 @media(min-width:992px) {
-    .info {
-        /*text-align: right;*/
-    }
-
     .vk-widget {
         margin-top: 0;
     }
@@ -32,14 +28,11 @@
 }
 
 .news-date {
-    /*height: 20px;*/
     float: right;
 }
 
-.news-entry-heading {
-    /*vertical-align: middle;*/
-    /*display: flex;*/
-    /*display: inline-flex;*/
+.news-entry p {
+    text-align: justify;
 }
 
 /*http://stackoverflow.com/questions/18424798/twitter-bootstrap-3-how-to-use-media-queries*/

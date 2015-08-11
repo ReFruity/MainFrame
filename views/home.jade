@@ -19,7 +19,7 @@ block content
                     strong  Новости
                 div.panel-body.news-content
                     - for (var i = 0; i < news.length; i++)
-                        div(class="news-entry-" + i)
+                        div(id="news-entry-" + i, class="news-entry")
                             h3!= news[i].heading
                             p!= news[i].content
                             span.label.label-default.news-date= news[i].date
