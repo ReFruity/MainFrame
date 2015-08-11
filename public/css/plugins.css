@@ -5,3 +5,13 @@ thead {
 span.label-header {
     font-size: 20px;
 }
+
+@media (min-width: 768px) {
+    .dl-horizontal dt {
+        width: 240px;
+    }
+    
+    .dl-horizontal dd {
+        margin-left: 250px;
+    }
+}
