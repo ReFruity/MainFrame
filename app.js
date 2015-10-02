@@ -1,20 +1,33 @@
 var express = require('express');
 var fs = require('fs');
+var logger = require('./libs/logger.js');
 var app = express();
 
-var news = JSON.parse(fs.readFileSync('public/json/news.json'));
+var newsPath = 'public/json/news.json';
+var news = JSON.parse(fs.readFileSync(newsPath));
 var rules = JSON.parse(fs.readFileSync('public/json/rules.json'));
 var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
 
-fs.watch('public/json/news.json', 
+// TODO: Move to library
+fs.watch(newsPath, 
     function (event, filename) {
+        logger.log('\<fs.watch\> Event \'' + event + '\' happened to file ' + filename);
+        
         if (event == "change") {
-            fs.readFile('public/json/news.json', 'utf-8', 
+            fs.readFile(newsPath, 'utf-8', 
                 function(err, data) {
                     if (err) {
                         throw err;
                     }
-                    news = JSON.parse(data);
+                    
+                    try {
+                        news = JSON.parse(data);
+                        logger.log('File \'' + newsPath + '\' was reloaded.');
+                    }
+                    catch (ex) {
+                        logger.log('Error parsing file \'' + newsPath + '\'');
+                        logger.log('Parsing exception: ' + ex);
+                    }
                 }
             );
         }
@@ -51,5 +64,5 @@ app.get('/plugins', function(req, res) {
 });
 
 app.listen(app.get('port'), function() {
-    console.log("Node app is running at localhost:" + app.get('port'));
+    logger.log("Node app is running at localhost:" + app.get('port'));
 });
