@@ -11,7 +11,7 @@ var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
 // TODO: Move to library
 fs.watch(newsPath, 
     function (event, filename) {
-        logger.log('\<fs.watch\> Event \'' + event + '\' happened to file ' + filename);
+        logger.log('\<fs.watch\> Event \'' + event + '\' happened to file \'' + filename + '\'');
         
         if (event == "change") {
             fs.readFile(newsPath, 'utf-8', 
@@ -26,7 +26,7 @@ fs.watch(newsPath,
                     }
                     catch (ex) {
                         logger.log('Error parsing file \'' + newsPath + '\'');
-                        logger.log('Parsing exception: ' + ex);
+                        logger.log('JSON.parse threw exception: ' + ex);
                     }
                 }
             );
