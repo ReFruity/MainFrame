@@ -1,5 +1,11 @@
 doctype html
 
+mixin page-heading(text)
+    div.row.text-center
+        div.panel.panel-default
+            div.panel-heading
+                h2= text
+
 html(lang='en')
     head
         block head

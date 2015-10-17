@@ -1,62 +1,59 @@
 extends layout.jade
 
 block append head
-    title Rules of the server
+    title Правила сервера
     link(href='css/tables.css', rel='stylesheet')
     link(href='css/rules.css', rel='stylesheet')
 
 mixin empty
     span.glyphicon.glyphicon-minus
-    
+
 block content
+    +page-heading('Правила сервера')
+
     -
-        penaltyTitle = 'Мера наказания'
-        // empty = '<span class="glyphicon glyphicon-minus"></span>';
-        rulesWithPenaltyAmount = rules.withPenalty.length
-        rulesWithoutPenaltyAmount = rules.withoutPenalty.length
+        penaltyColumnTitle = 'Мера наказания'
+        categoriesAmount = rules.categories.length
         notesAmount = rules.notes.length
-    
-    div.row.text-center
-        div.panel.panel-default
-            div.panel-body
-                h2 Правила сервера
-        
+
     div.row
-        - for (var i = 0; i < rulesWithPenaltyAmount; i++)
-            table.table.table-hover
-                thead
-                    tr
-                        th.col-xs-1 #
-                        th.col-xs-8= rules.withPenalty[i].title
-                        th.col-xs-3= penaltyTitle
-                tbody
-                    - for (var j = 0; j < rules.withPenalty[i].entries.length; j++)
+        - for (var i = 0; i < categoriesAmount; i++)
+            - var category = rules.categories[i]
+            - if (category.has_penalty)
+                table.table.table-hover
+                    thead
                         tr
-                            td= (i+1) + '.' + (j+1)
-                            td= rules.withPenalty[i].entries[j].ruleText
-                            - penalty = rules.withPenalty[i].entries[j].penalty
-                            - if (penalty)
-                                td= rules.withPenalty[i].entries[j].penalty
-                            - else
-                                td
-                                    +empty
-        
-        - for (var i = 0; i < rulesWithoutPenaltyAmount; i++)
-            table.table.table-hover
-                thead
-                    tr
-                        th.col-xs-1 #
-                        th.col-xs-11= rules.withoutPenalty[i].title
-                tbody
-                    - for (var j = 0; j < rules.withoutPenalty[i].entries.length; j++)
+                            th.col-xs-1 #
+                            th.col-xs-8= category.name
+                            th.col-xs-3= penaltyColumnTitle
+                    tbody
+                        - for (var j = 0; j < rules.byCategory[i].length; j++)
+                            - var rule = rules.byCategory[i][j]
+                            tr
+                                td= category.number + '.' + rule.number
+                                td= rule.content
+                                - if (rule.penalty)
+                                    td= rule.penalty
+                                - else
+                                    td
+                                        +empty
+            - else
+                table.table.table-hover
+                    thead
                         tr
-                            td= (rulesWithPenaltyAmount+i+1) + '.' + (j+1)
-                            td= rules.withoutPenalty[i].entries[j]
-        
+                            th.col-xs-1 #
+                            th.col-xs-11= category.name
+                    tbody
+                        - for (var j = 0; j < rules.byCategory[i].length; j++)
+                            - var rule = rules.byCategory[i][j]
+                            tr
+                                td= category.number + '.' + rule.number
+                                td= rule.content
+
         div.panel.panel-default
             div.panel-heading
                 span.glyphicon.glyphicon-asterisk
                 strong  Примечания
             ul.list-group
                 - for (var i = 0; i < notesAmount; i++)
-                    li.list-group-item!= rules.notes[i]
+                    li.list-group-item!= rules.notes[i].content

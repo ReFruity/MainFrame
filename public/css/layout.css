@@ -20,3 +20,8 @@ div.panel div.panel-body h2 {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+div.panel div.panel-heading h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+}

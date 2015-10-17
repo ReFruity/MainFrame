@@ -2,14 +2,14 @@ extends layout.jade
 
 block append head
     meta(name='description', content='Survival Minecraft Server with Friendly Administration')
-    title Welcome to aionics.ru!
+    title Сервер Aionics.ru
     link(href='css/home.css', rel='stylesheet')
 
 block content
     div.text-center.panel.panel-default
         div.panel-body.greetings
             h1 Добро пожаловать на наш сайт!
-            p Скоро будет старт сервера. Следите за новостями!
+            p Скоро будет старт сервера Minecraft. Следите за новостями!
 
     div.row
         div.col-md-4.text-center
@@ -19,7 +19,7 @@ block content
                     strong  Новости
                 div.panel-body.news-content
                     - for (var i = 0; i < news.length; i++)
-                        div(id="news-entry-" + i, class="news-entry")
+                        div(id="news-entry-" + news[i].id, class="news-entry")
                             h3!= news[i].heading
                             p!= news[i].content
                             span.label.label-default.news-date= news[i].date

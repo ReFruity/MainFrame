@@ -1,17 +1,17 @@
 extends layout.jade
 
 block append head
-    title Donate to support us
+    title Поддержите сервер
     link(href='css/tables.css', rel='stylesheet')
     link(href='css/donate.css', rel='stylesheet')
 
 block content
-    // TODO: Move to mysql table(s)
+    // TODO: Move to mysql tables
     -
         yes = '<img src="images/ok.png" />';
         no = '<img src="images/cross.png" />';
         list = [
-            ['', 'Premium', 'VIP', 'Moderator', 'Administrator'],
+            ['', 'Премиум', 'VIP', 'Модератор', 'Администратор'],
             ['Набор "Премиум"<br><code>/kit premium</code>', yes, no, no, no],
             ['Набор "VIP"<br><code>/kit vip</code>', no, yes, yes, yes],
             ['Сохранение опыта после смерти', yes, yes, yes, yes],
@@ -32,10 +32,7 @@ block content
             ['Цена (месяц / навсегда):', '20р / 50р', '50р / 100р', '150р / 300р', '350р / 700р']
         ];
 
-    div.row.text-center
-        div.panel.panel-default
-            div.panel-body
-                h2 Поддержите сервер
+    +page-heading('Поддержите сервер')
 
     div.row.text-center
         table.table.table-striped.table-bordered
