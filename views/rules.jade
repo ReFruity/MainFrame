@@ -30,7 +30,7 @@ block content
                         - for (var j = 0; j < rules.byCategory[i].length; j++)
                             - var rule = rules.byCategory[i][j]
                             tr
-                                td= category.number + '.' + rule.number
+                                td= category.index + '.' + rule.index
                                 td= rule.content
                                 - if (rule.penalty)
                                     td= rule.penalty
@@ -47,7 +47,7 @@ block content
                         - for (var j = 0; j < rules.byCategory[i].length; j++)
                             - var rule = rules.byCategory[i][j]
                             tr
-                                td= category.number + '.' + rule.number
+                                td= category.index + '.' + rule.index
                                 td= rule.content
 
         div.panel.panel-default

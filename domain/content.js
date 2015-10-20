@@ -21,7 +21,7 @@ function formatNewsDates() {
     }
 }
 
-dbConnection.query('SELECT id, number, name, has_penalty FROM rule_category', function(error, rows, fields) {
+dbConnection.query('SELECT id, `index`, name, has_penalty FROM rule_category ORDER BY `index`', function(error, rows, fields) {
     handleError(error);
     logMySQLResultWithDebugLevel('Categories', rows);
 
@@ -43,8 +43,8 @@ function convertFieldsToBoolean () {
 }
 
 function queryRulesByCategory(index, category) {
-    dbConnection.query('SELECT id, number, content, penalty FROM rules WHERE category_number = ? ORDER BY number',
-        [category.number],
+    dbConnection.query('SELECT id, `index`, content, penalty FROM rule WHERE category_id = ? ORDER BY `index`',
+        [category.id],
         function(error, rows, fields) {
             handleError(error);
             logMySQLResultWithDebugLevel('Rules sorted by categories [' + index + ']', rows);
@@ -54,7 +54,7 @@ function queryRulesByCategory(index, category) {
     );
 }
 
-dbConnection.query('SELECT id, content FROM rule_notes', function(error, rows, fields) {
+dbConnection.query('SELECT id, content FROM rule_note', function(error, rows, fields) {
     handleError(error);
     logMySQLResultWithDebugLevel('Notes', rows);
 
