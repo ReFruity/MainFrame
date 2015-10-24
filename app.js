@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/donate', function(req, res) {
-    res.render('donate');
+    res.render('donate', {donate: content.getDonate()});
 });
 
 app.get('/contact', function(req, res) {
