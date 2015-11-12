@@ -1,14 +1,15 @@
 extends layout.jade
     
 block append head
-    title Контакты
+    title Contact us
     link(href='css/contact.css', rel='stylesheet')
         
 block content
-    +page-heading('Как с нами связаться')
-
-    div.text-center.contacts
-        div
+    div.panel.panel-default.text-center.contacts
+        div.panel-heading
+            h2 Как с нами связаться
+            
+        div.panel-body
             div.row
                 div
                     span.label.label-default Aionics

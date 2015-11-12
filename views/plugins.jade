@@ -1,12 +1,15 @@
 extends layout.jade
 
 block append head
-    title Плагины
+    title Plugins
     link(href='css/tables.css', rel='stylesheet')
     link(href='css/plugins.css', rel='stylesheet')
     
 block content
-    +page-heading('Описание плагинов')
+    div.row.text-center
+        div.panel.panel-default
+            div.panel-body
+                h2 Описание плагинов
         
     div.row
         table.table
