@@ -5,6 +5,8 @@ var content = require('./domain/content');
 
 var app = express();
 var LOG_LEVELS = logger.LOG_LEVELS;
+// TODO: This can cause content.js miss its debug prints. Should pass log level as arg to require logger.js instead.
+//setTimeout(function() {logger.setLogLevel(process.env.LOG_LEVEL)}, 250);
 logger.setLogLevel(process.env.LOG_LEVEL);
 
 var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
