@@ -5,6 +5,7 @@ var content = require('./domain/content');
 
 var app = express();
 var LOG_LEVELS = logger.LOG_LEVELS;
+logger.setLogLevel(process.env.LOG_LEVEL);
 
 var plugins = JSON.parse(fs.readFileSync('public/json/plugins.json'));
 
@@ -41,5 +42,5 @@ app.get('/plugins', function(req, res) {
 app.listen(app.get('port'), function() {
     logger.log("Node app is running at localhost:" + app.get('port'));
     logger.log("Environment is '" + app.get('env') + "'");
-    logger.log("Logging level is '" + logger.CURRENT_LOG_LEVEL_NAME + "'");
+    logger.log("Logging level is '" + logger.getCurrentLogLevelName() + "'");
 });
