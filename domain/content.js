@@ -12,7 +12,7 @@ var donate = {};
 
 dbConnection.query('SELECT id, date, heading, content FROM news ORDER BY date DESC', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('News', rows);
+    logMySQLResultWithTraceLevel('News', rows);
 
     news = rows;
     formatNewsDates();
@@ -32,7 +32,7 @@ function formatNewsDates() {
 // https://dev.mysql.com/doc/refman/5.5/en/keywords.html
 dbConnection.query('SELECT id, `index`, name, has_penalty FROM rule_category ORDER BY `index`', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('Categories', rows);
+    logMySQLResultWithTraceLevel('Categories', rows);
 
     rules.categories = rows;
     convertRulesCategoriesHasPenaltyToBoolean();
@@ -56,7 +56,7 @@ function queryRulesByCategoryIndex(index, category) {
     dbConnection.query('SELECT id, `index`, content, penalty FROM rule WHERE category_id = ? ORDER BY `index`', [category.id],
         function(error, rows, fields) {
             handleError(error);
-            logMySQLResultWithDebugLevel('Rules sorted by category index [' + index + ']', rows);
+            logMySQLResultWithTraceLevel('Rules sorted by category index [' + index + ']', rows);
 
             rules.byCategory[index] = rows;
         }
@@ -65,7 +65,7 @@ function queryRulesByCategoryIndex(index, category) {
 
 dbConnection.query('SELECT id, content FROM rule_note', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('Notes', rows);
+    logMySQLResultWithTraceLevel('Notes', rows);
 
     rules.notes = rows;
 });
@@ -76,7 +76,7 @@ dbConnection.query('SELECT id, content FROM rule_note', function(error, rows, fi
 
 dbConnection.query('SELECT id, name FROM donate_group', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('Donate groups', rows);
+    logMySQLResultWithTraceLevel('Donate groups', rows);
 
     donate.groups = rows;
 });
@@ -86,7 +86,7 @@ queryDonatePrices();
 function queryDonatePrices() {
     dbConnection.query('SELECT id, group_id, feature_id, month, forever FROM donate_price', function(error, rows, fields) {
         handleError(error);
-        logMySQLResultWithDebugLevel('Donate prices', rows);
+        logMySQLResultWithTraceLevel('Donate prices', rows);
 
         fillDonatePricesByGroupId(rows);
     });
@@ -101,12 +101,12 @@ function fillDonatePricesByGroupId(prices) {
         }
     }
 
-    logger.log(function() { return 'Filled donate.pricesByGroupId: \n' + util.inspect(donate.pricesByGroupId) }, LOG_LEVELS.DEBUG)
+    logger.log(function() { return 'Filled donate.pricesByGroupId: \n' + util.inspect(donate.pricesByGroupId) }, LOG_LEVELS.TRACE)
 }
 
 dbConnection.query('SELECT id, `index`, description, code FROM donate_feature ORDER BY `index`', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('Donate features', rows);
+    logMySQLResultWithTraceLevel('Donate features', rows);
 
     donate.features = rows;
     queryDonateAdjacency();
@@ -115,7 +115,7 @@ dbConnection.query('SELECT id, `index`, description, code FROM donate_feature OR
 function queryDonateAdjacency() {
     dbConnection.query('SELECT collation_id, feature_id, group_id FROM donate_group_and_feature', function(error, rows, fields) {
         handleError(error);
-        logMySQLResultWithDebugLevel('Donate group and feature', rows);
+        logMySQLResultWithTraceLevel('Donate group and feature', rows);
 
         fillDonateAdjacencyTable(rows);
     });
@@ -132,12 +132,12 @@ function fillDonateAdjacencyTable(rows) {
         donate.adjacencyTable[rows[i].feature_id][rows[i].group_id] = true;
     }
 
-    logger.log(function() { return 'Filled donate.adjacencyTable: \n' + util.inspect(donate.adjacencyTable) }, LOG_LEVELS.DEBUG)
+    logger.log(function() { return 'Filled donate.adjacencyTable: \n' + util.inspect(donate.adjacencyTable) }, LOG_LEVELS.TRACE)
 }
 
 dbConnection.query('SELECT id, service, account_id FROM donate_account_details', function(error, rows, fields) {
     handleError(error);
-    logMySQLResultWithDebugLevel('Donate account details', rows);
+    logMySQLResultWithTraceLevel('Donate account details', rows);
 
     donate.accountDetails = rows;
 });
@@ -151,9 +151,9 @@ function handleError(error) {
     }
 }
 
-function logMySQLResultWithDebugLevel(name, rows) {
+function logMySQLResultWithTraceLevel(name, rows) {
     // TODO: Test if callback is called when LOG_LEVEL < DEBUG (it shouldn't be)
-    logger.log(function() { return '[MySQL query result] ' + name + ': \n' + util.inspect(rows) }, LOG_LEVELS.DEBUG);
+    logger.log(function() { return '[MySQL query result] ' + name + ': \n' + util.inspect(rows) }, LOG_LEVELS.TRACE);
 }
 
 exports.getNews = function() {
