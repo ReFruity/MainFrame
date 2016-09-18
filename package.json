@@ -1,5 +1,5 @@
 {
-  "name": "aionics.ru",
+  "name": "mframe.ru",
   "version": "0.0.2",
   "description": "Front page",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "dependencies": {
     "enum": "^2.2.0",
     "express": "~4.13.0",
+    "gamedig": "~0.2.25",
     "jade": "~1.11.0",
     "merge": "^1.2.0",
     "mysql": "~2.9.0"

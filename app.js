@@ -22,7 +22,9 @@ if (app.get('env') === 'development') {
 }
 
 app.get('/', function(req, res) {
-    res.render('home', {news: content.getNews()});
+    content.getHomeData(function(homeData) {
+        res.render('home', {homeData: homeData});
+    });
 });
 
 app.get('/donate', function(req, res) {
@@ -39,6 +41,14 @@ app.get('/rules', function(req, res) {
 
 app.get('/plugins', function(req, res) {
     res.render('plugins', {plugins: plugins});
+});
+
+app.get('/api/home', function(req, res) {
+    if (!req.xhr) return next();
+
+    content.getHomeData(function(homeData) {
+        res.json(homeData);
+    });
 });
 
 app.listen(app.get('port'), function() {

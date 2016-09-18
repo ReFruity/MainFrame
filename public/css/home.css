@@ -1,10 +1,16 @@
-.row {
-    padding-bottom: 10px;
+.status {
+    overflow: auto;
+    height: 372px;
+    width: 390px;
+    margin-bottom: 10px;
 }
 
-#gametracker {
-    width: 304px;
-    height: 372px;
+.front {
+    z-index: 100;
+}
+
+#map-button {
+    margin-left: 50px;
 }
 
 .vk-widget {

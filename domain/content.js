@@ -1,30 +1,31 @@
 var dbConnection = require('../libs/db-connection');
+var gamedig = require('gamedig');
 var dateUtil = require('../libs/date-util');
 var logger = require('../libs/logger');
 var util = require('util');
 
 var LOG_LEVELS = logger.LOG_LEVELS;
-var news = {};
+var homeData = {};
 var rules = {};
 var donate = {};
 
-//region news
+//region homeData
 
 dbConnection.query('SELECT id, date, heading, content FROM news ORDER BY date DESC', function(error, rows, fields) {
     handleError(error);
     logMySQLResultWithTraceLevel('News', rows);
 
-    news = rows;
+    homeData.news = rows;
     formatNewsDates();
 });
 
 function formatNewsDates() {
-    for (var i in news) {
-        news[i].date = dateUtil.formatRussianDate(news[i].date);
+    for (var i in homeData.news) {
+        homeData.news[i].date = dateUtil.formatRussianDate(homeData.news[i].date);
     }
 }
 
-//endregion news
+//endregion homeData
 
 //region rules
 
@@ -156,10 +157,37 @@ function logMySQLResultWithTraceLevel(name, rows) {
     logger.log(function() { return '[MySQL query result] ' + name + ': \n' + util.inspect(rows) }, LOG_LEVELS.TRACE);
 }
 
-exports.getNews = function() {
-    return news;
-};
+function getHomeData(callback) {
+    var hostName = 'mframe.ru';
 
+    gamedig.query(
+        {
+            type: 'minecraft',
+            host: hostName
+        },
+        function (state) {
+            homeData.status = {};
+
+            if (state.error) {
+                logger.log('[GameDig] Server "' + hostName + '" is offline.', LOG_LEVELS.INFO);
+                homeData.status.online = false;
+            }
+            else {
+                homeData.status.name = state.name;
+                homeData.status.online = true;
+                homeData.status.version = state.raw.version;
+                homeData.status.players = state.players;
+                homeData.status.maxplayers = state.maxplayers;
+            }
+
+            callback(homeData);
+        }
+    );
+}
+
+exports.getHomeData = getHomeData;
+
+// TODO: Query DB on every call
 exports.getRules = function() {
     return rules;
 };

@@ -2,7 +2,7 @@ extends layout.jade
 
 block append head
     meta(name='description', content='Survival Minecraft Server with Friendly Administration')
-    title Сервер Aionics.ru
+    title Сервер MainFrame
     link(href='css/home.css', rel='stylesheet')
 
 block content
@@ -18,30 +18,48 @@ block content
                     span.glyphicon.glyphicon-bullhorn
                     strong  Новости
                 div.panel-body.news-content
+                    - var news = homeData.news
                     - for (var i = 0; i < news.length; i++)
                         div(id="news-entry-" + news[i].id, class="news-entry")
                             h3!= news[i].heading
                             p!= news[i].content
                             span.label.label-default.news-date= news[i].date
                         hr
-                
-        div.col-md-4.text-center
-            div
-                iframe#gametracker(src="http://cache.www.gametracker.com/components/html0/?host=212.119.243.127:25565&bgColor=333333&fontColor=CCCCCC&titleBgColor=222222&titleColor=FF9900&borderColor=555555&linkColor=FFCC00&borderLinkColor=222222&showMap=0&currentPlayersHeight=180&showCurrPlayers=1&showTopPlayers=0&showBlogs=0&width=300")
+
+        div.col-md-4.text-center.front
+            div.status
+                - var status = homeData.status
+                - if (!status.online)
+                    div Сервер оффлайн
+                - else
+                    table.table.table-striped.table-hover.table-bordered
+                        thead
+                            tr
+                                th.text-center Сервер
+                                th.text-center #{status.name}
+                        tbody
+                            tr
+                                td Версия
+                                td #{status.version}
+                            tr
+                                td Игроки
+                                td #{status.players.length} / #{status.maxplayers}
+                            - for (var i in status.players)
+                                tr
+                                    td
+                                    td #{status.players[i].name}
             div.btn-block
-                a.btn.btn-success(href='http://map.aionics.ru', target='_blank', role='button') Динамическая карта сервера!
+                a#map-button.btn.btn-success(href='http://map.aionics.ru', target='_blank', role='button') Динамическая карта сервера!
 
         div.col-md-4.text-center
             // VK Widget
             div#vk_groups.vk-widget
                 script(type='text/javascript', src='//vk.com/js/api/openapi.js?116')
                 script(type='text/javascript').
-                    VK.Widgets.Group("vk_groups", {mode: 2, width: "298", height: "400"}, 9190731);
-                    
+                    VK.Widgets.Group("vk_groups", {mode: 2, width: "298", height: "400"}, 96822714);
+
     div.row.text-center
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js')
-        script(type='text/javascript', src='http://want2vote.com/js/get_picture/vote_banner.js' charset='utf-8')
-        #w2v_vote_banner(rel='174')
 
 block append js
     script(type='text/javascript', src='js/home.js')
